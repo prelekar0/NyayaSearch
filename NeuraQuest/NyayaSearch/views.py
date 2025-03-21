@@ -71,19 +71,14 @@ def case_details(request):
     url = data['url']
     title = data['title']
     
-    details = summarize_case_with_gemini(url)
+    details = summarize_case_with_gemini(url, title)
     
     demo_dict["Title"] = title
     demo_dict["MetaData"] = {
-        "Date": "2025-03-21",
-        "Case Number": "1234567890"
     }
     demo_dict["URL"] = url
     demo_dict["Summary"] = details.replace("\n","<br>")
-    
-    dict2 = {
-        "data": [json.dumps(demo_dict,indent=4)]
-    }
+    print("demo_dict ------------------- ",demo_dict)
 
     user = User.objects.get(username="tusharneje")
     SearchHistory.objects.create(user=user, query=f"{url.replace('url:','')}", result=demo_dict)

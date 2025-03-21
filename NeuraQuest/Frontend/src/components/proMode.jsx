@@ -60,7 +60,7 @@ const ProMode = () => {
             </div>
             <h2 className="text-xl font-bold mb-2">Plus</h2>
             <div className="flex items-baseline mb-4">
-              <span className="text-3xl font-bold">₹1999</span>
+              <span className="text-3xl font-bold">₹199</span>
               <span className="text-gray-600 ml-2">/month</span>
             </div>
             <p className="text-gray-600 mb-6">Unlock advanced features and tools for enhanced legal research</p>
@@ -91,7 +91,7 @@ const ProMode = () => {
           <div className="bg-gray-100 rounded-xl p-6">
             <h2 className="text-xl font-bold mb-2">Pro</h2>
             <div className="flex items-baseline mb-4">
-              <span className="text-3xl font-bold">₹200</span>
+              <span className="text-3xl font-bold">₹799</span>
               <span className="text-gray-600 ml-2">/month</span>
             </div>
             <p className="text-gray-600 mb-6">Unlock the full potential of AI with our Pro Plan</p>

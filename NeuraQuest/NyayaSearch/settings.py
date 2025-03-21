@@ -44,11 +44,15 @@ INSTALLED_APPS = [
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5137",  # React app URL
     "http://127.0.0.1:5137",  # If accessing via IP
+    "http://localhost:5138",  # React app URL
+    "http://127.0.0.1:5138",  # If accessing via IP
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:5137",
-    "http://127.0.0.1:5137"
+    "http://127.0.0.1:5137",
+    "http://localhost:5138",
+    "http://127.0.0.1:5138"
 ]
 
 
