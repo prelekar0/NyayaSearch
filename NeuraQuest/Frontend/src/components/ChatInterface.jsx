@@ -32,7 +32,7 @@ const ChatInterface = () => {
 
       setMessages(prev => [
         ...prev,
-        { text: 'Here is what I found about your query:', sender: 'ai', response: formattedResults },
+        { text: 'Here is What NyāyaSearch Says!', sender: 'ai', response: formattedResults },
       ]);
     } catch (error) {
       console.error('Error fetching AI response:', error);
@@ -105,7 +105,7 @@ const ChatInterface = () => {
       console.log('Processing item:', parsedItem);
       
       return {
-        title: extractValue(parsedItem, ['Title', 'title'], 'No Title'),
+        title: extractValue(parsedItem, ['Title', 'title'], ''),
         headline: extractValue(parsedItem, ['Summary', 'summary'], '') ? 
                  extractValue(parsedItem, ['Summary', 'summary'], '').substring(0, 150) + '...' : 
                  'No Headline',
@@ -189,9 +189,7 @@ const ChatInterface = () => {
           <h3 className="font-bold text-lg">{message.caseDetails.title}</h3>
           
           <div className="bg-white p-4 rounded-lg shadow">
-            <h4 className="font-semibold mb-2 flex items-center">
-              <FaFileAlt className="mr-2" /> Summary:
-            </h4>
+
             <p className="text-sm mb-4" id="summary_data" dangerouslySetInnerHTML={{ __html: message.caseDetails.summary }}></p>
 
             {/* <h4 className="font-semibold mb-2 flex items-center">
@@ -306,10 +304,8 @@ const ChatInterface = () => {
               <h2 className="text-xl font-semibold mb-2">Welcome to NyāyaSearch</h2>
               <p className="mb-4 text-sm">Ask any question about Indian law, recent judgments, or legal procedures.</p>
               <div className="text-sm bg-blue-50 p-4 rounded-lg border border-blue-100">
-                <p className="font-medium text-blue-800 mb-1">Sample Search Queries:</p>
-                <p className="mb-1">"Show me land dispute cases"</p>
-                <p className="mb-1">"Find cases about disputed lands in Andhra Pradesh"</p>
-                <p>"keyword: land dispute, court: bombay, fromdate: 01-01-2020, todate: 31-12-2022"</p>
+                <p className="font-medium text-blue-800 mb-1">Sample Search Queries:</p>  
+                <p>"keyword: &lt;keyword&gt;, court: &lt;name&gt;, fromdate: &lt;DD-MM-YYYY&gt;, todate: &lt;DD-MM-YYYY&gt;"</p>
               </div>
             </div>
           </div>
@@ -361,7 +357,14 @@ const ChatInterface = () => {
             placeholder="Search for legal cases or ask a question..."
             className="flex-1 bg-white border border-gray-300 rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
             disabled={isLoading}
+            list="suggestions"
           />
+          <datalist id="suggestions">
+            <option value="keyword: " label="Keyword" />
+            <option value="court: " label="Court" />
+            <option value="fromdate: " label="From Date" />
+            <option value="todate: " label="To Date" />
+          </datalist>
           <button
             type="submit"
             disabled={isLoading || newMessage.trim() === ''}

@@ -102,7 +102,6 @@ def display_results(results):
         case_data = {
             "Title": title,
             "MetaData": {
-                "Date": date,
                 "Case Number": case_number
             },
             "URL": url,

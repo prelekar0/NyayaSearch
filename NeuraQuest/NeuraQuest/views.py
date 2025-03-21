@@ -6,22 +6,66 @@ from .SearchByNyaya import api_search
 from .SearchAndAnalyze import *
 from .GeminiAnalyze import *
 from User.models import SearchHistory, User
+import google.generativeai as genai
+
+CASUAL_QUERIES = [
+    "who are you", "how are you", "what is your name",
+    "tell me about yourself", "are you human", "how rare you","hi","hello","hey"
+]
+KEYWORDS = [
+    "keyword","fromdate","todate","court","judge","advocate","petitioner","respondent","status","subject"
+]
+
+GEMINI_API_KEY = "AIzaSyDl8-iMfQHoruX8Ji7EQ7_9hzoml7ETwc8"  
 def index(request):
     return render(request, 'home.html')
 
 def chat(request):
     return render(request, 'chat.html')
 
+def query_gemini(prompt):
+    genai.configure(api_key=GEMINI_API_KEY)
+    model = genai.GenerativeModel("gemini-2.0-flash")
+    response = model.generate_content(prompt)
+    return response.text
+
 @csrf_exempt
 def demo(request):
     data = json.loads(request.body)
     user_query = data['query']
-    data = getKanoonData(user_query)
-    print("---------------------------------------- ",type(data), data)
-    data = json.loads(data)
-    user = User.objects.get(username="tusharneje")
-    SearchHistory.objects.create(user=user, query=f"{user_query}", result=data)
-    return JsonResponse({'data':data})
+    user_query = user_query.strip().lower()
+
+    if any(casual in user_query for casual in CASUAL_QUERIES):
+        data = query_gemini(f"You are a legal AI. Respond casually to: {user_query}. NOTE DO NOT USE ANY SPECIAL CHARACTERS AND DO NOT FORMAT ANYTHING GIVE JUST PLAIN TEXT.")
+        demo_dict = {
+        "Summary": f"{data} How Can I Assist You?"
+        }
+        return JsonResponse({'data':demo_dict})
+    elif any(legal in user_query for legal in KEYWORDS):
+        user = User.objects.get(username="tusharneje")
+        available_data = SearchHistory.objects.filter(user=user, query__iregex=rf'.*{user_query}.*').first()
+        print(available_data)
+        if available_data:
+            print("---------------------------------------- ",type(available_data.result), available_data.result)
+            data = json.loads(available_data.result.replace("'", "\""))
+            return JsonResponse({'data':data})
+        else:
+            data = getKanoonData(user_query)
+            data = json.loads(data)
+            user = User.objects.get(username="tusharneje")
+            SearchHistory.objects.create(user=user, query=f"{user_query.replace('keyword:','')}", result=data)
+            return JsonResponse({'data':data})
+        
+    else:
+        demo_dict = {
+        "Summary": f"I am a legal AI. I am not allowed to answer non-legal questions. Please ask a legal question."
+        }
+        return JsonResponse({'data':demo_dict})
+
+    
+    
+    
+    
 
 @csrf_exempt
 def case_details(request):
@@ -46,12 +90,12 @@ def case_details(request):
 
     print(demo_dict)
     user = User.objects.get(username="tusharneje")
-    SearchHistory.objects.create(user=user, query=f"url:{url}", result=demo_dict)
+    SearchHistory.objects.create(user=user, query=f"{url.replace('url:','')}", result=demo_dict)
     return JsonResponse({'data':demo_dict})
 
 def get_search_history(request):
     user = User.objects.get(username="tusharneje")
-    search_history = SearchHistory.objects.filter(user=user)
+    search_history = SearchHistory.objects.filter(user=user).order_by('-id')[:20]
     search_history = [{"query": history.query} for history in search_history]
     return JsonResponse({'data': search_history})
 

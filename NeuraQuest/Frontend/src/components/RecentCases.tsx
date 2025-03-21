@@ -34,7 +34,9 @@ const RecentCases: React.FC = () => {
       }
     };
 
-    fetchRecentCases();
+    setInterval(() => {
+      fetchRecentCases();
+    }, 1000);
   }, []);
 
   return (
@@ -49,7 +51,7 @@ const RecentCases: React.FC = () => {
             View All
           </button>
         </div>
-        <div className="space-y-4">
+        <div className="space-y-0">
           {recentCases.map((kase, index) => (
             <div key={index} className="p-3 rounded-lg hover:bg-law-muted/50 transition-colors duration-200 cursor-pointer">
               <div className="flex justify-between items-start mb-1">

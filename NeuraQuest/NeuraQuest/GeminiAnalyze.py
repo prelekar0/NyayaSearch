@@ -16,13 +16,14 @@ def summarize_case_with_gemini(case_url, question=None):
     URL: {case_url}
     
     Provide the following details:
-    1. Title
-    2. MetaData (Date, Case Number)
-    3. URL
-    4. Summary in Brife in 7-8 Paragraphs each paragraph should be in 5-6 Lines.
-    5. Compliend Penal Code Section Applied to Selected Case
+    Title (use <b> tag for bold)
+    MetaData (Date, Case Number bold the 'MetaData')
+    URL (use <a> tag on click redirect in new page in blue text)
+    Summary Title (use <b> tag for bold dont say Summary Title bold the title bold)
+    Summary in Brife in 7-8 Paragraphs each paragraph should be in 5-6 Lines.
+    Compliend Penal Code Section Applied to Selected Case
 
-    NOTE : DO NOT USE ANY FORMATTER LIKE ** OR ANYTHING ELSE. JUST RETURN THE TEXT.
+    NOTE : DO NOT USE ANY FORMATTER LIKE ** OR ANYTHING ELSE. JUST RETURN THE TEXT. USE ANY HTML TAGS IF NEEDED.
     Question: {question if question else 'Summarize the case details.'}
     """
 
