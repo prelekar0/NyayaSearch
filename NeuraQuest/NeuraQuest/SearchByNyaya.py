@@ -133,11 +133,13 @@ def process_with_gemini(text, GEMINI_API_KEY):
     - A "citations" field containing a list of dictionaries, where each dictionary represents a citation
       and includes "id", "citation", "summary", and "relevantText" fields.
     - DO NOT FORGET TO USE THE TAGS IN THE RESPONSE LIKE THIS <highlight>...</highlight> and <citation>...</citation>
+    - A "case_details" and "fulltext" field containing the details of the case, scan the URL Web Page and provide the proper details of the case in minimum 200 words
 
     Example JSON structure:
     {{
         "summary": "...",
         "fullText": "...",
+        "case_details": "...",
         "citations": [
             {{
                 "id": 1,
@@ -178,7 +180,7 @@ def api_search(query):
         data = convert_to_text(results)
         text_content = data
         structured_response = json.dumps(process_with_gemini(text_content,GEMINI_API_KEY))
-        return structured_response
+        return data,structured_response
     else:
         print("❌ No results returned.")
 

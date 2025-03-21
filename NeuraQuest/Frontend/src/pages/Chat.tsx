@@ -119,7 +119,7 @@ const Index = () => {
                     </h2>
 
                     <div className="grid grid-cols-2 gap-3">
-                        <button onClick={() => navigate('/home')} className="flex flex-col items-center justify-center p-4 bg-law-muted/50 rounded-lg hover:bg-law-muted transition-colors duration-200">
+                        <button onClick={() => navigate('/')} className="flex flex-col items-center justify-center p-4 bg-law-muted/50 rounded-lg hover:bg-law-muted transition-colors duration-200">
                             <Home className="h-6 w-6 text-law-primary mb-2" />
                             <span className="text-sm">Home</span>
                         </button>
@@ -140,7 +140,7 @@ const Index = () => {
                         </button>
                     </div>
 
-                    <div className="mt-6">
+                    {/* <div className="mt-6">
                         <h2 className="font-medium text-lg flex items-center mb-4">
                             <FileText className="h-5 w-5 text-law-primary mr-2" />
                             Chat Summary
@@ -150,7 +150,7 @@ const Index = () => {
                                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
                             </p>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
 

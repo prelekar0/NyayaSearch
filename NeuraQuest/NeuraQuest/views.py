@@ -3,8 +3,8 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import json, time
 from .SearchByNyaya import api_search
-
-
+from .SearchAndAnalyze import *
+from .GeminiAnalyze import *
 def index(request):
     return render(request, 'home.html')
 
@@ -15,66 +15,37 @@ def chat(request):
 def demo(request):
     data = json.loads(request.body)
     user_query = data['query']
-    response = api_search(user_query)
-    retData = json.loads(response)
-    time.sleep(5)
+    # Getting Data from Kanoon
+    data = getKanoonData(user_query)
+    print("---------------------------------------- ",type(data), data)
+    data = json.loads(data)
+
+    return JsonResponse({'data':data})
+
+@csrf_exempt
+def case_details(request):
+    data = json.loads(request.body)
+    demo_dict = {}
+    url = data['url']
+    title = data['title']
     
-    cleaned_retData = convert_dict_format(retData)
-    print(cleaned_retData)
-    mockResponse = {
-        "summary": "The My COursy judgment in <citation>K.S. Puttaswamy v. Union of India (2017) 10 SCC 1</citation> has established privacy as a fundamental right under the Indian Constitution. The Court held that privacy is protected as an intrinsic part of <highlight>Article 21</highlight> which guarantees the right to life and personal liberty.",
-        "fullText": """
-# Right to Privacy as a Fundamental Right
-
-In the landmark case of <citation>K.S. Puttaswamy v. Union of India (2017) 10 SCC 1</citation>, the Supreme Court unanimously affirmed that the right to privacy is a fundamental right under the Indian Constitution.
-
-## Key Points of the Judgment:
-
-1. Privacy is protected as an intrinsic part of <highlight>Article 21</highlight> that guarantees right to life and personal liberty.
-
-2. Privacy includes at its core the preservation of personal intimacies, the sanctity of family life, marriage, procreation, the home and sexual orientation.
-
-3. While the right to privacy is not absolute, any encroachment must satisfy the three-fold requirement of:
-   - Legality (existence of a law)
-   - Legitimate aim
-   - Proportionality
-
-4. The Court overruled previous judgments in <citation>M.P. Sharma v. Satish Chandra, AIR 1954 SC 300</citation> and <citation>Kharak Singh v. State of Uttar Pradesh, AIR 1963 SC 1295</citation> to the extent that they held that there is no fundamental right to privacy under the Indian Constitution.
-
-## Implications:
-
-The judgment has significant implications for data protection laws in India and serves as a constitutional check on various state actions that may infringe on individuals' privacy, including the Aadhaar scheme, surveillance measures, and data collection practices.
-
-As Justice Chandrachud observed, "Privacy is the constitutional core of human dignity."
-
-## Related Statutes:
-
-- <highlight>Information Technology Act, 2000</highlight>
-- <highlight>Information Technology (Reasonable Security Practices and Procedures and Sensitive Personal Data or Information) Rules, 2011</highlight>
-- Draft Personal Data Protection Bill
-        """,
-        "citations": [
-            {
-                "id": 1,
-                "citation": "K.S. Puttaswamy v. Union of India (2017) 10 SCC 1",
-                "summary": "Nine-judge bench unanimously held that right to privacy is a fundamental right under the Indian Constitution",
-                "relevantText": "Privacy is protected as an intrinsic part of the right to life and personal liberty under Article 21 and as a part of the freedoms guaranteed by Part III of the Constitution"
-            },
-            {
-                "id": 2,
-                "citation": "M.P. Sharma v. Satish Chandra, AIR 1954 SC 300",
-                "summary": "Early decision that held there is no fundamental right to privacy under the Indian Constitution",
-                "relevantText": "This judgment was overruled in K.S. Puttaswamy to the extent it held that the right to privacy is not protected by the Constitution"
-            },
-            {
-                "id": 3,
-                "citation": "Kharak Singh v. State of Uttar Pradesh, AIR 1963 SC 1295",
-                "summary": "Dealt with surveillance measures and partially recognized aspects of privacy",
-                "relevantText": "The majority opinion rejected the right to privacy as a fundamental right, but Justice Subba Rao's minority opinion recognized privacy as part of personal liberty"
-            }
-        ]
+    details = summarize_case_with_gemini(url)
+    
+    demo_dict["Title"] = title
+    demo_dict["MetaData"] = {
+        "Date": "2025-03-21",
+        "Case Number": "1234567890"
     }
-    return JsonResponse(cleaned_retData)
+    demo_dict["URL"] = url
+    demo_dict["Summary"] = details.replace("\n","<br>")
+    
+    dict2 = {
+        "data": [json.dumps(demo_dict,indent=4)]
+    }
+
+    print(demo_dict)
+    return JsonResponse({'data':demo_dict})
+
 
 
 def convert_dict_format(input_dict):

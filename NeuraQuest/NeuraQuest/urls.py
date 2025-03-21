@@ -22,4 +22,5 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('chat/', views.chat, name='chat'),
     path('demo/', views.demo, name='demo'),
+    path('get_case_details/', views.case_details, name='case_details'),
 ]
