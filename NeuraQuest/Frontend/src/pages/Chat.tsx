@@ -5,92 +5,93 @@ import RecentCases from '../components/RecentCases';
 import { BookOpen, FileText, Search, History, Bookmark, Home, TrendingUp, User } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
-const yourRecentCasesArray = [
-    {
-        title: "K.S. Puttaswamy v. Union of India (2017) 10 SCC 1",
-        citation: "2017 SCC (1) 1",
-        date: "2017-01-01",
-        subject: "Privacy"
-    },
-    {
-        title: "K.S. Puttaswamy v. Union of India (2017) 10 SCC 1",
-        citation: "2017 SCC (1) 1",
-        date: "2017-01-01",
-        subject: "Privacy"
-    },
-    {
-        title: "K.S. Puttaswamy v. Union of India (2017) 10 SCC 1",
-        citation: "2017 SCC (1) 1",
-        date: "2017-01-01",
-        subject: "Privacy"
-    },
-    {
-        title: "K.S. Puttaswamy v. Union of India (2017) 10 SCC 1",
-        citation: "2017 SCC (1) 1",
-        date: "2017-01-01",
-        subject: "Privacy"
-    },
-    {
-        title: "K.S. Puttaswamy v. Union of India (2017) 10 SCC 1",
-        citation: "2017 SCC (1) 1",
-        date: "2017-01-01",
-        subject: "Privacy"
-    },
-    {
-        title: "K.S. Puttaswamy v. Union of India (2017) 10 SCC 1",
-        citation: "2017 SCC (1) 1",
-        date: "2017-01-01",
-        subject: "Privacy"
-    },
-    {
-        title: "K.S. Puttaswamy v. Union of India (2017) 10 SCC 1",
-        citation: "2017 SCC (1) 1",
-        date: "2017-01-01",
-        subject: "Privacy"
-    },
-    {
-        title: "K.S. Puttaswamy v. Union of India (2017) 10 SCC 1",
-        citation: "2017 SCC (1) 1",
-        date: "2017-01-01",
-        subject: "Privacy"
-    },
-    {
-        title: "K.S. Puttaswamy v. Union of India (2017) 10 SCC 1",
-        citation: "2017 SCC (1) 1",
-        date: "2017-01-01",
-        subject: "Privacy"
-    },
-    {
-        title: "K.S. Puttaswamy v. Union of India (2017) 10 SCC 1",
-        citation: "2017 SCC (1) 1",
-        date: "2017-01-01",
-        subject: "Privacy"
-    },
-    {
-        title: "K.S. Puttaswamy v. Union of India (2017) 10 SCC 1",
-        citation: "2017 SCC (1) 1",
-        date: "2017-01-01",
-        subject: "Privacy"
-    },
-    {
-        title: "K.S. Puttaswamy v. Union of India (2017) 10 SCC 1",
-        citation: "2017 SCC (1) 1",
-        date: "2017-01-01",
-        subject: "Privacy"
-    },
-    {
-        title: "K.S. Puttaswamy v. Union of India (2017) 10 SCC 1",
-        citation: "2017 SCC (1) 1",
-        date: "2017-01-01",
-        subject: "Privacy"
-    },
-    {
-        title: "K.S. Puttaswamy v. Union of India (2017) 10 SCC 1",
-        citation: "2017 SCC (1) 1",
-        date: "2017-01-01",
-        subject: "Privacy"
-    },
-]
+// const yourRecentCasesArray = [
+//     {
+//         title: "K.S. Puttaswamy v. Union of India (2017) 10 SCC 1",
+//         citation: "2017 SCC (1) 1",
+//         date: "2017-01-01",
+//         subject: "Privacy"
+//     },
+//     {
+//         title: "K.S. Puttaswamy v. Union of India (2017) 10 SCC 1",
+//         citation: "2017 SCC (1) 1",
+//         date: "2017-01-01",
+//         subject: "Privacy"
+//     },
+//     {
+//         title: "K.S. Puttaswamy v. Union of India (2017) 10 SCC 1",
+//         citation: "2017 SCC (1) 1",
+//         date: "2017-01-01",
+//         subject: "Privacy"
+//     },
+//     {
+//         title: "K.S. Puttaswamy v. Union of India (2017) 10 SCC 1",
+//         citation: "2017 SCC (1) 1",
+//         date: "2017-01-01",
+//         subject: "Privacy"
+//     },
+//     {
+//         title: "K.S. Puttaswamy v. Union of India (2017) 10 SCC 1",
+//         citation: "2017 SCC (1) 1",
+//         date: "2017-01-01",
+//         subject: "Privacy"
+//     },
+//     {
+//         title: "K.S. Puttaswamy v. Union of India (2017) 10 SCC 1",
+//         citation: "2017 SCC (1) 1",
+//         date: "2017-01-01",
+//         subject: "Privacy"
+//     },
+//     {
+//         title: "K.S. Puttaswamy v. Union of India (2017) 10 SCC 1",
+//         citation: "2017 SCC (1) 1",
+//         date: "2017-01-01",
+//         subject: "Privacy"
+//     },
+//     {
+//         title: "K.S. Puttaswamy v. Union of India (2017) 10 SCC 1",
+//         citation: "2017 SCC (1) 1",
+//         date: "2017-01-01",
+//         subject: "Privacy"
+//     },
+//     {
+//         title: "K.S. Puttaswamy v. Union of India (2017) 10 SCC 1",
+//         citation: "2017 SCC (1) 1",
+//         date: "2017-01-01",
+//         subject: "Privacy"
+//     },
+//     {
+//         title: "K.S. Puttaswamy v. Union of India (2017) 10 SCC 1",
+//         citation: "2017 SCC (1) 1",
+//         date: "2017-01-01",
+//         subject: "Privacy"
+//     },
+//     {
+//         title: "K.S. Puttaswamy v. Union of India (2017) 10 SCC 1",
+//         citation: "2017 SCC (1) 1",
+//         date: "2017-01-01",
+//         subject: "Privacy"
+//     },
+//     {
+//         title: "K.S. Puttaswamy v. Union of India (2017) 10 SCC 1",
+//         citation: "2017 SCC (1) 1",
+//         date: "2017-01-01",
+//         subject: "Privacy"
+//     },
+//     {
+//         title: "K.S. Puttaswamy v. Union of India (2017) 10 SCC 1",
+//         citation: "2017 SCC (1) 1",
+//         date: "2017-01-01",
+//         subject: "Privacy"
+//     },
+//     {
+//         title: "K.S. Puttaswamy v. Union of India (2017) 10 SCC 1",
+//         citation: "2017 SCC (1) 1",
+//         date: "2017-01-01",
+//         subject: "Privacy"
+//     },
+// ]
+
 const Index = () => {
     const chatRef = useRef(null);
     const navigate = useNavigate();
@@ -105,7 +106,8 @@ const Index = () => {
     return (
         <div className="flex justify-center items-center h-screen">
             <div className="w-1/3 h-screen overflow-y-auto">
-                <RecentCases recentCases={yourRecentCasesArray} />
+
+                <RecentCases />
             </div>
             <div className="lg:col-span-2 glass-card overflow-hidden animate-fade-up h-screen w-full" style={{ animationDelay: '0.3s' }}>
                 <ChatInterface ref={chatRef} />

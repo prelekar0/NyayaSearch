@@ -5,6 +5,7 @@ import json, time
 from .SearchByNyaya import api_search
 from .SearchAndAnalyze import *
 from .GeminiAnalyze import *
+from User.models import SearchHistory, User
 def index(request):
     return render(request, 'home.html')
 
@@ -15,11 +16,11 @@ def chat(request):
 def demo(request):
     data = json.loads(request.body)
     user_query = data['query']
-    # Getting Data from Kanoon
     data = getKanoonData(user_query)
     print("---------------------------------------- ",type(data), data)
     data = json.loads(data)
-
+    user = User.objects.get(username="tusharneje")
+    SearchHistory.objects.create(user=user, query=f"{user_query}", result=data)
     return JsonResponse({'data':data})
 
 @csrf_exempt
@@ -44,9 +45,15 @@ def case_details(request):
     }
 
     print(demo_dict)
+    user = User.objects.get(username="tusharneje")
+    SearchHistory.objects.create(user=user, query=f"url:{url}", result=demo_dict)
     return JsonResponse({'data':demo_dict})
 
-
+def get_search_history(request):
+    user = User.objects.get(username="tusharneje")
+    search_history = SearchHistory.objects.filter(user=user)
+    search_history = [{"query": history.query} for history in search_history]
+    return JsonResponse({'data': search_history})
 
 def convert_dict_format(input_dict):
     """

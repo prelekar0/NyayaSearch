@@ -269,7 +269,10 @@ const ChatInterface = () => {
                 
                 {result.link && (
                   <button 
-                    onClick={() => handleReferenceClick(result.link, result.title)}
+                    onClick={() => {
+                      handleReferenceClick(result.link, result.title);
+                      messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+                    }}
                     className="text-blue-600 hover:text-blue-800 text-sm font-medium hover:underline focus:outline-none"
                   >
                     View Case Details

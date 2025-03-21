@@ -19,6 +19,16 @@ class History(models.Model):
 
     def __str__(self):
         return f"{self.user.username} - {self.action} at {self.timestamp}"
+    
+class SearchHistory(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    query = models.TextField()
+    result = models.TextField()
+    timestamp = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return f"{self.user.username} - {self.query} at {self.timestamp}"
 
 admin.site.register(History)
 admin.site.register(User)
+admin.site.register(SearchHistory)

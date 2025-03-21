@@ -44,7 +44,7 @@ const Index = () => {
               <ArrowRight className="h-5 w-5 ml-2" />
             </button>
 
-            <button onClick={() => navigate('/chat')} className="bg-law-primary hover:bg-law-accent text-white px-4 py-2 rounded-lg transition-colors duration-200 shadow-subtle flex items-center">
+            <button onClick={() => navigate('/pro')} className="bg-law-primary hover:bg-law-accent text-white px-4 py-2 rounded-lg transition-colors duration-200 shadow-subtle flex items-center">
               <Scale className="h-5 w-5 mr-2" />
               Upgrade to Pro
             </button>
