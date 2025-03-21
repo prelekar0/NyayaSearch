@@ -1,12 +1,17 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-import json, time
-from .SearchByNyaya import api_search
+import json
 from .SearchAndAnalyze import *
 from .GeminiAnalyze import *
 from User.models import SearchHistory, User
 import google.generativeai as genai
+from .GetNews import get_trending_cases_json
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
 CASUAL_QUERIES = [
     "who are you", "how are you", "what is your name",
@@ -16,12 +21,6 @@ KEYWORDS = [
     "keyword","fromdate","todate","court","judge","advocate","petitioner","respondent","status","subject"
 ]
 
-GEMINI_API_KEY = "AIzaSyDl8-iMfQHoruX8Ji7EQ7_9hzoml7ETwc8"  
-def index(request):
-    return render(request, 'home.html')
-
-def chat(request):
-    return render(request, 'chat.html')
 
 def query_gemini(prompt):
     genai.configure(api_key=GEMINI_API_KEY)
@@ -43,8 +42,8 @@ def demo(request):
         return JsonResponse({'data':demo_dict})
     elif any(legal in user_query for legal in KEYWORDS):
         user = User.objects.get(username="tusharneje")
-        available_data = SearchHistory.objects.filter(user=user, query__iregex=rf'.*{user_query}.*').first()
-        print(available_data)
+        available_data = SearchHistory.objects.filter(user=user, query__iregex=rf'.*{user_query.replace("keyword:","")}.*').first()
+        print("Available Data: ------------------------------------------- ",available_data)
         if available_data:
             print("---------------------------------------- ",type(available_data.result), available_data.result)
             data = json.loads(available_data.result.replace("'", "\""))
@@ -98,6 +97,13 @@ def get_search_history(request):
     search_history = SearchHistory.objects.filter(user=user).order_by('-id')[:20]
     search_history = [{"query": history.query} for history in search_history]
     return JsonResponse({'data': search_history})
+
+def get_trending_cases(request):
+    data = get_trending_cases_json()
+    print(type(data))
+    data = json.loads(data)
+    print(type(data))
+    return JsonResponse({'data': data['articles']})
 
 def convert_dict_format(input_dict):
     """

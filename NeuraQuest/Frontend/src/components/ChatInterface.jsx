@@ -292,10 +292,7 @@ const ChatInterface = () => {
 
   return (
     <div className="h-full flex flex-col bg-gray-50 p-4 rounded-xl shadow-lg">
-      <div className="flex items-center justify-center p-3 bg-blue-700 text-white rounded-t-lg mb-4">
-        <FaGavel className="mr-2 text-xl" />
-        <h1 className="text-xl font-bold">NyāyaSearch - Indian Legal Cases</h1>
-      </div>
+      
       
       <div className="flex-1 overflow-y-auto p-4 space-y-6">
         {messages.length === 0 ? (

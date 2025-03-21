@@ -1,23 +1,10 @@
-
 import React, { useRef } from 'react';
 import ChatInterface from '../components/ChatInterface';
 import RecentCases from '../components/RecentCases';
-import { BookOpen, FileText, Search, History, Bookmark, Home, TrendingUp, User } from 'lucide-react';
+import { BookOpen, FileText, Search, History, Bookmark, Home, TrendingUp, User, Lock } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-
+import NewsLayer from '../components/NewsLayer';
 // const yourRecentCasesArray = [
-//     {
-//         title: "K.S. Puttaswamy v. Union of India (2017) 10 SCC 1",
-//         citation: "2017 SCC (1) 1",
-//         date: "2017-01-01",
-//         subject: "Privacy"
-//     },
-//     {
-//         title: "K.S. Puttaswamy v. Union of India (2017) 10 SCC 1",
-//         citation: "2017 SCC (1) 1",
-//         date: "2017-01-01",
-//         subject: "Privacy"
-//     },
 //     {
 //         title: "K.S. Puttaswamy v. Union of India (2017) 10 SCC 1",
 //         citation: "2017 SCC (1) 1",
@@ -105,7 +92,7 @@ const Index = () => {
 
     return (
         <div className="flex justify-center items-center h-screen">
-            <div className="w-1/3 h-screen overflow-y-auto">
+            <div className="w-1/3 h-screen overflow-y-auto border-r border-law-border">
 
                 <RecentCases />
             </div>
@@ -126,12 +113,12 @@ const Index = () => {
                             <span className="text-sm">Home</span>
                         </button>
 
-                        <button className="flex flex-col items-center justify-center p-4 bg-law-muted/50 rounded-lg hover:bg-law-muted transition-colors duration-200">
-                            <TrendingUp className="h-6 w-6 text-law-primary mb-2" />
-                            <span className="text-sm">Tranding Cases</span>
+                        <button onClick={() => navigate('/pro')} className="flex flex-col items-center justify-center p-4 bg-law-muted/50 rounded-lg hover:bg-law-muted transition-colors duration-200">
+                            <Lock className="h-6 w-6 text-law-primary mb-2" />
+                            <span className="text-sm">Upgrade to Pro</span>
                         </button>
 
-                        <button className="flex flex-col items-center justify-center p-4 bg-law-muted/50 rounded-lg hover:bg-law-muted transition-colors duration-200">
+                        <button onClick={() => navigate('/history')} className="flex flex-col items-center justify-center p-4 bg-law-muted/50 rounded-lg hover:bg-law-muted transition-colors duration-200">
                             <History className="h-6 w-6 text-law-primary mb-2" />
                             <span className="text-sm">User History</span>
                         </button>
@@ -141,18 +128,7 @@ const Index = () => {
                             <span className="text-sm">Profile</span>
                         </button>
                     </div>
-
-                    {/* <div className="mt-6">
-                        <h2 className="font-medium text-lg flex items-center mb-4">
-                            <FileText className="h-5 w-5 text-law-primary mr-2" />
-                            Chat Summary
-                        </h2>
-                        <div className="bg-law-muted/50 p-4 rounded-lg">
-                            <p className="text-sm">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
-                            </p>
-                        </div>
-                    </div> */}
+                    <NewsLayer />
                 </div>
             </div>
 

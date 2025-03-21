@@ -19,9 +19,8 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index, name='index'),
-    path('chat/', views.chat, name='chat'),
     path('demo/', views.demo, name='demo'),
     path('get_case_details/', views.case_details, name='case_details'),
     path('get_search_history/', views.get_search_history, name='get_search_history'),
+    path('get_trending_cases/', views.get_trending_cases, name='get_trending_cases'),
 ]

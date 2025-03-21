@@ -41,7 +41,7 @@ const RecentCases: React.FC = () => {
 
   return (
     <div className="space-y-6 animate-fade-up" style={{ animationDelay: '0.4s' }}>
-      <div className="glass-card p-6 h-screen">
+      <div className="p-6 h-screen">
         <div className="flex items-center justify-between mb-4 border-b border-law-border pb-2">
           <h2 className="font-medium text-lg flex items-center">
             <FileText className="h-5 w-5 text-law-primary mr-2" />

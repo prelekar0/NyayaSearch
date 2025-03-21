@@ -30,33 +30,25 @@ const ProMode = () => {
           <div className="bg-gray-100 rounded-xl p-6">
             <h2 className="text-xl font-bold mb-2">Free</h2>
             <div className="flex items-baseline mb-4">
-              <span className="text-3xl font-bold">$0</span>
+              <span className="text-3xl font-bold">₹0</span>
               <span className="text-gray-600 ml-2">/month</span>
             </div>
-            <p className="text-gray-600 mb-6">Explore how AI can help you with everyday tasks</p>
+            <p className="text-gray-600 mb-6">Access essential legal research tools and resources</p>
             <button className="w-full py-2 px-4 bg-gray-100 border border-gray-400 rounded-lg mb-6">
               Your current plan
             </button>
             <ul className="space-y-4">
               <li className="flex items-start">
                 <Check className="h-5 w-5 text-gray-600 mr-2 mt-0.5" />
-                <span>Access to GPT-4o mini and reasoning</span>
+                <span>Access to Law Model 1.0</span>
               </li>
               <li className="flex items-start">
                 <Check className="h-5 w-5 text-gray-600 mr-2 mt-0.5" />
-                <span>Standard voice mode</span>
+                <span>20 Requests per day</span>
               </li>
               <li className="flex items-start">
                 <Check className="h-5 w-5 text-gray-600 mr-2 mt-0.5" />
                 <span>Real-time data from the web with search</span>
-              </li>
-              <li className="flex items-start">
-                <Check className="h-5 w-5 text-gray-600 mr-2 mt-0.5" />
-                <span>Limited access to GPT-4o</span>
-              </li>
-              <li className="flex items-start">
-                <Check className="h-5 w-5 text-gray-600 mr-2 mt-0.5" />
-                <span>Use custom GPTs</span>
               </li>
             </ul>
           </div>
@@ -68,21 +60,21 @@ const ProMode = () => {
             </div>
             <h2 className="text-xl font-bold mb-2">Plus</h2>
             <div className="flex items-baseline mb-4">
-              <span className="text-3xl font-bold">$20</span>
+              <span className="text-3xl font-bold">₹1999</span>
               <span className="text-gray-600 ml-2">/month</span>
             </div>
-            <p className="text-gray-600 mb-6">Level up productivity and creativity with expanded access</p>
+            <p className="text-gray-600 mb-6">Unlock advanced features and tools for enhanced legal research</p>
             <button className="w-full py-2 px-4 bg-blue-500 hover:bg-blue-600 rounded-lg mb-6 text-white">
               Get Plus
             </button>
             <ul className="space-y-4">
               <li className="flex items-start">
                 <Check className="h-5 w-5 text-blue-500 mr-2 mt-0.5" />
-                <span>Everything in Free</span>
+                <span>Access to Law Model 1.0</span>
               </li>
               <li className="flex items-start">
                 <Check className="h-5 w-5 text-blue-500 mr-2 mt-0.5" />
-                <span>Extended limits on messaging, file uploads, advanced data analysis, and image generation</span>
+                <span>500 Requests per day</span>
               </li>
               <li className="flex items-start">
                 <Check className="h-5 w-5 text-blue-500 mr-2 mt-0.5" />
@@ -90,15 +82,7 @@ const ProMode = () => {
               </li>
               <li className="flex items-start">
                 <Check className="h-5 w-5 text-blue-500 mr-2 mt-0.5" />
-                <span>Access to deep research, multiple reasoning models (o3-mini, o3-mini-high, and o1)</span>
-              </li>
-              <li className="flex items-start">
-                <Check className="h-5 w-5 text-blue-500 mr-2 mt-0.5" />
-                <span>Limited access to Sora video generation</span>
-              </li>
-              <li className="flex items-start">
-                <Check className="h-5 w-5 text-blue-500 mr-2 mt-0.5" />
-                <span>Opportunities to test new features</span>
+                <span>Real-time data from the web with search</span>
               </li>
             </ul>
           </div>
@@ -107,21 +91,21 @@ const ProMode = () => {
           <div className="bg-gray-100 rounded-xl p-6">
             <h2 className="text-xl font-bold mb-2">Pro</h2>
             <div className="flex items-baseline mb-4">
-              <span className="text-3xl font-bold">$200</span>
+              <span className="text-3xl font-bold">₹200</span>
               <span className="text-gray-600 ml-2">/month</span>
             </div>
-            <p className="text-gray-600 mb-6">Get the best of OpenAI with the highest level of access</p>
+            <p className="text-gray-600 mb-6">Unlock the full potential of AI with our Pro Plan</p>
             <button className="w-full py-2 px-4 bg-black text-white hover:bg-gray-800 rounded-lg mb-6">
               Get Pro
             </button>
             <ul className="space-y-4">
               <li className="flex items-start">
                 <Check className="h-5 w-5 text-black mr-2 mt-0.5" />
-                <span>Everything in Plus</span>
+                <span>Access to Law Model 1.0</span>
               </li>
               <li className="flex items-start">
-                <Check className="h-5 w-5 text-black mr-2 mt-0.5" />
-                <span>Unlimited access to all reasoning models and GPT-4o</span>
+              <Check className="h-5 w-5 text-black mr-2 mt-0.5" />
+                <span>5000 Requests per day</span>
               </li>
               <li className="flex items-start">
                 <Check className="h-5 w-5 text-black mr-2 mt-0.5" />
@@ -129,7 +113,7 @@ const ProMode = () => {
               </li>
               <li className="flex items-start">
                 <Check className="h-5 w-5 text-black mr-2 mt-0.5" />
-                <span>Extended access to deep research, which conducts multi-step online research for complex tasks</span>
+                <span>Real-time data from the web with search</span>
               </li>
               <li className="flex items-start">
                 <Check className="h-5 w-5 text-black mr-2 mt-0.5" />
@@ -137,7 +121,7 @@ const ProMode = () => {
               </li>
               <li className="flex items-start">
                 <Check className="h-5 w-5 text-black mr-2 mt-0.5" />
-                <span>Extended access to Sora video generation</span>
+                <span>Image based Search</span>
               </li>
             </ul>
           </div>

@@ -1,9 +1,10 @@
 import google.generativeai as genai
+from dotenv import load_dotenv
+import os
 
-# Replace with your Gemini API key
-GEMINI_API_KEY = "AIzaSyDl8-iMfQHoruX8Ji7EQ7_9hzoml7ETwc8"  
+load_dotenv()
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
-# Initialize Gemini model
 genai.configure(api_key=GEMINI_API_KEY)
 model = genai.GenerativeModel("gemini-2.0-flash")
 
@@ -17,7 +18,7 @@ def summarize_case_with_gemini(case_url, question=None):
     
     Provide the following details:
     Title (use <b> tag for bold)
-    MetaData (Date, Case Number bold the 'MetaData')
+    MetaData (Date, Case Number bold the MetaData)
     URL (use <a> tag on click redirect in new page in blue text)
     Summary Title (use <b> tag for bold dont say Summary Title bold the title bold)
     Summary in Brife in 7-8 Paragraphs each paragraph should be in 5-6 Lines.

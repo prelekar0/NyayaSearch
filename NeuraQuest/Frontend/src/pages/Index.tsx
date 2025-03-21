@@ -57,8 +57,7 @@ const Index = () => {
       
       <footer className="border-t border-gray-200 py-6">
         <div className="container mx-auto px-4 md:px-6 text-center text-law-foreground/60 text-sm">
-          <p>NyāyaSearch &copy; {new Date().getFullYear()} • Legal research reimagined</p>
-          <p className="mt-1">This is a demonstration platform. Not for professional legal use.</p>
+          <p className="mt-1">&copy; {new Date().getFullYear()} NyāyaSearch. All rights reserved.</p>
         </div>
       </footer>
     </div>
