@@ -37,7 +37,23 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
+    'User'
 ]
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5137",  # React app URL
+    "http://127.0.0.1:5137",  # If accessing via IP
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:5137",
+    "http://127.0.0.1:5137"
+]
+
+
+# Allow credentials if needed
+CORS_ALLOW_CREDENTIALS = True
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -47,6 +63,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'NeuraQuest.urls'
