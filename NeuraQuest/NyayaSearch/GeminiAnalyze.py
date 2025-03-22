@@ -9,7 +9,6 @@ genai.configure(api_key=GEMINI_API_KEY)
 model = genai.GenerativeModel("gemini-2.0-flash")
 
 def summarize_case_with_gemini(case_url, title):
-    print("case_url ------------------- ",case_url)
     prompt = f"""
     <b>Case Summary Request</b>
 
@@ -35,6 +34,36 @@ def summarize_case_with_gemini(case_url, title):
     print(response.text)
     return response.text
 
+
+def take_opinion(user_query, available_data):
+    prompt = f"""
+    There Are Two Inputs:
+    1. User Query {user_query}
+    2. Available Data {available_data}
+
+    User Query is the query that the user has entered.
+    Available Data is the data that is available in the database.
+
+    You Need to Check If The User Query Matches With Any Of The Data In The Available Data.
+    If It Matches, Return True.
+    If It Does Not Match, Return False.
+    
+    """
+    response = model.generate_content(prompt)
+    return response.text
+
+def answer_query(user_query, available_data):
+    prompt = f"""
+    There Are Two Inputs:
+    1. User Query {user_query}
+    2. Available Data {available_data}
+
+    You Need to Answer The User Query Based On The Available Data.
+    Do Not Add Anything Like ```html or ``` in response.
+    
+    """
+    response = model.generate_content(prompt)
+    return response.text
 
 
 # Test Cases  
