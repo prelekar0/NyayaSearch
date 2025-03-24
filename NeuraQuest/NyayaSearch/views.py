@@ -34,9 +34,12 @@ def demo(request):
     user_query = data['query']
     user_query = user_query.strip().lower()
 
-    user = User.objects.get(username="tusharneje")
-    available_data = SearchHistory.objects.filter(user=user).order_by('-id').first()
-    is_matching = take_opinion(user_query, available_data.result)
+    try:
+        user = User.objects.get(username="tusharneje")
+        available_data = SearchHistory.objects.filter(user=user).order_by('-id').first()
+        is_matching = take_opinion(user_query, available_data.result)
+    except:
+        is_matching = "False"
 
     if bool(is_matching) and not user_query.startswith("keyword:") and not any(casual in user_query for casual in CASUAL_QUERIES) :
         data = answer_query(user_query, available_data.result)
