@@ -35,30 +35,47 @@ def demo(request):
     user_query = data['query']
     user_query = user_query.strip().lower()
 
-    if any(casual in user_query for casual in CASUAL_QUERIES):
-        data = query_gemini(f"You are a legal AI. Respond casually to: {user_query}. NOTE DO NOT USE ANY SPECIAL CHARACTERS AND DO NOT FORMAT ANYTHING GIVE JUST PLAIN TEXT.")
-        demo_dict = {
-        "Summary": f"{data} How Can I Assist You?"
-        }
-        return JsonResponse({'data':demo_dict})
-    elif any(legal in user_query for legal in KEYWORDS):
+    try:
         user = User.objects.get(username="tusharneje")
-        available_data = SearchHistory.objects.filter(user=user, query__iregex=rf'.*{user_query.replace("keyword:","")}.*').first()
-        if available_data:
-            data = json.loads(available_data.result.replace("'", "\""))
-            return JsonResponse({'data':data})
-        else:
-            data = getKanoonData(user_query)
-            data = json.loads(data)
-            user = User.objects.get(username="tusharneje")
-            SearchHistory.objects.create(user=user, query=f"{user_query.replace('keyword:','')}", result=data)
-            return JsonResponse({'data':data})
-        
-    else:
+        available_data = SearchHistory.objects.filter(user=user).order_by('-id').first()
+        is_matching = take_opinion(user_query, available_data.result)
+    except:
+        is_matching = "False"
+
+    if bool(is_matching) and not user_query.startswith("keyword:") and not any(casual in user_query for casual in CASUAL_QUERIES) :
+        data = answer_query(user_query, available_data.result)
+        print("data ------------------- ",data)
         demo_dict = {
-        "Summary": f"I am a legal AI. I am not allowed to answer non-legal questions. Please ask a legal question."
-        }
+            "Title": f"{data}"
+            }
         return JsonResponse({'data':demo_dict})
+    else:
+        if any(casual in user_query for casual in CASUAL_QUERIES):
+            data = query_gemini(f"You are a legal AI. Respond casually to: {user_query}. NOTE DO NOT USE ANY SPECIAL CHARACTERS AND DO NOT FORMAT ANYTHING GIVE JUST PLAIN TEXT.")
+            demo_dict = {
+            "Summary": f"{data} How Can I Assist You?"
+            }
+            return JsonResponse({'data':demo_dict})
+    
+    # Legal Queries
+        elif any(legal in user_query for legal in KEYWORDS):
+            user = User.objects.get(username="tusharneje")
+            available_data = SearchHistory.objects.filter(user=user, query__iregex=rf'.*{user_query.replace("keyword:","")}.*').first()
+            if available_data:
+                data = json.loads(available_data.result.replace("'", "\""))
+                return JsonResponse({'data':data})
+            else:
+                data = getKanoonData(user_query)
+                data = json.loads(data)
+                user = User.objects.get(username="tusharneje")
+                SearchHistory.objects.create(user=user, query=f"{user_query.replace('keyword:','')}", result=data)
+                return JsonResponse({'data':data})
+            
+        else:
+            demo_dict = {
+            "Summary": f"I am a legal AI. I am not allowed to answer non-legal questions. Please ask a legal question."
+            }
+            return JsonResponse({'data':demo_dict})
 
     
     
@@ -72,19 +89,14 @@ def case_details(request):
     url = data['url']
     title = data['title']
     
-    details = summarize_case_with_gemini(url)
+    details = summarize_case_with_gemini(url, title)
     
     demo_dict["Title"] = title
     demo_dict["MetaData"] = {
-        "Date": "2025-03-21",
-        "Case Number": "1234567890"
     }
     demo_dict["URL"] = url
     demo_dict["Summary"] = details.replace("\n","<br>")
-    
-    dict2 = {
-        "data": [json.dumps(demo_dict,indent=4)]
-    }
+    print("demo_dict ------------------- ",demo_dict)
 
     user = User.objects.get(username="tusharneje")
     SearchHistory.objects.create(user=user, query=f"{url.replace('url:','')}", result=demo_dict)
@@ -138,3 +150,6 @@ def convert_dict_format(input_dict):
     }
 
     return cleaned_dict
+
+
+
