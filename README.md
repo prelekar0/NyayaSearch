@@ -7,3 +7,7 @@ To Run :-
 npm run dev  /// execute this in Frontend folder 
 
 Python manage.py runserver //// execute this in Nyaya Search folder
+
+
+127.0.0.1/admin --- Id= nejet
+                    pass == 123
