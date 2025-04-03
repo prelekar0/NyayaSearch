@@ -12,6 +12,10 @@
 - 📰 Recent law news feed
 - 🎯 Different subscriptions for various usage purposes
 
+## 🖥️ Preview Screenshot
+![NyāyaSearch Screenshot](/Screenshots/ss.png)
+
+
 ## 🛠️ Installation
 
 Follow these steps to set up the project on your local machine:
@@ -39,7 +43,7 @@ Follow these steps to set up the project on your local machine:
    ```bash
    python manage.py runserver
    ```
-6. **For database migrations:**
+6. **`(Optional)` If Any Database Related Issue then Use Database Migrations:**
    ```bash
    python manage.py makemigrations
    python manage.py migrate
@@ -67,10 +71,10 @@ Once both backend and frontend are running:
 **Modify `settings.py` to allow CORS:**
 ```python
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5137",  # React app URL
-    "http://127.0.0.1:5137",  # If accessing via IP
-    "http://localhost:5138",  # Additional React app URL
-    "http://127.0.0.1:5138",  # If accessing via IP
+    "http://localhost:5137", 
+    "http://127.0.0.1:5137",
+    "http://localhost:5138",
+    "http://127.0.0.1:5138",
     # Add more origins if needed
 ]
 
