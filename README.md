@@ -2,7 +2,7 @@
 
 ## 📌 General Information
 - **Project Name:** NyāyaSearch: Discover Indian Law with AI Precision
-- **Version:** 0.0.1 Beta
+- **Version:** 1.0.0 (Beta)
 - **Tech Stack:** Frontend (React, TypeScript), Backend (Python Django), LLMs (Google Gemini)
 - **Status:** In Development / Beta Completed
 - **Authors:** Tushar Neje, Swaraj Pawar, Prathmesh Relekar, Manasi Mahabdi
