@@ -1,0 +1,187 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 20% 98%;
+    --foreground: 215 25% 27%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 215 25% 27%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 25% 27%;
+
+    --primary: 201 100% 36%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 199 84% 75%;
+    --secondary-foreground: 215 25% 27%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215 20% 65.1%;
+
+    --accent: 199 84% 75%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 201 100% 36%;
+
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 215 28% 17%;
+    --foreground: 210 40% 98%;
+
+    --card: 215 25% 27%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 215 25% 27%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 201 100% 36%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 215 25% 27%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 215 28% 17%;
+    --muted-foreground: 215 20% 65.1%;
+
+    --accent: 215 28% 17%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 215 28% 17%;
+    --input: 215 28% 17%;
+    --ring: 201 100% 36%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-law-background text-law-foreground font-sans;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-sans tracking-tight;
+  }
+  
+  ::selection {
+    @apply bg-law-secondary/30 text-law-foreground;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-white/80 backdrop-blur-lg border border-white/20 shadow-glass transition-all duration-300;
+  }
+  
+  .glass-card:hover {
+    @apply shadow-glass-hover;
+  }
+  
+  .chat-bubble {
+    @apply rounded-2xl p-4 max-w-[85%] animate-fade-up;
+  }
+  
+  .user-bubble {
+    @apply chat-bubble bg-law-primary text-white ml-auto;
+  }
+  
+  .ai-bubble {
+    @apply chat-bubble glass-card mr-auto;
+  }
+  
+  .highlight {
+    @apply bg-highlight/30 px-1 rounded-sm font-medium transition-colors duration-300;
+  }
+  
+  .highlight:hover {
+    @apply bg-highlight/50;
+  }
+  
+  .citation {
+    @apply text-law-primary underline decoration-law-secondary decoration-2 underline-offset-2 font-medium cursor-pointer transition-all duration-200;
+  }
+  
+  .citation:hover {
+    @apply text-law-accent decoration-law-accent;
+  }
+  
+  .search-input {
+    @apply w-full bg-white/70 backdrop-blur-md border border-gray-200 rounded-2xl px-5 py-4 text-lg shadow-subtle focus:ring-2 focus:ring-law-primary/30 focus:outline-none transition-all duration-300;
+  }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+/* Loading animation for chat */
+.loading-dots {
+  display: inline-flex;
+  align-items: center;
+}
+
+.loading-dots span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: currentColor;
+  opacity: 0.6;
+  animation: dot-flashing 1s infinite alternate;
+  margin: 0 2px;
+}
+
+.loading-dots span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.loading-dots span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes dot-flashing {
+  0% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 0.8;
+  }
+}
