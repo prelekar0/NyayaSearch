@@ -27,7 +27,7 @@ Follow these steps to set up the project on your local machine:
    ```
 2. **Navigate to the backend directory:**
    ```bash
-   cd NyayaSearch
+   cd NyayaSearch/NyayaSearch
    ```
 3. **Install dependencies:**
    ```bash
@@ -52,7 +52,7 @@ Follow these steps to set up the project on your local machine:
 ### 🎨 Frontend Setup
 1. **Navigate to the frontend directory:**
    ```bash
-   cd NyayaSearch/Frontend/
+   cd NyayaSearch/NyayaSearch/Frontend/
    ```
 2. **Install dependencies:**
    ```bash

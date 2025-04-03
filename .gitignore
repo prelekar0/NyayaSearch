@@ -6,5 +6,8 @@ __pycache__/
 *.pyw
 *.pyz
 
-NeuraQuest/node_modules/
-NeuraQuest/.env
+NyayaSearch/node_modules/
+NyayaSearch/.env
+NyayaSearch/__pycache__
+
+NyayaSearch/NeuraQuest/__pycache__
