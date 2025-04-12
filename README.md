@@ -88,9 +88,8 @@ CSRF_TRUSTED_ORIGINS = [
 ```
 
 ## 💻 Demo Video
-```
-Demo Video(https://drive.google.com/file/d/140E2-Ymbh_fOQ3v7OhMJKTlYrFudNOkH/view?usp=drivesdk)
-```
+[Watch Demo Video of Nyaysearch](https://drive.google.com/file/d/140E2-Ymbh_fOQ3v7OhMJKTlYrFudNOkH/view?usp=drivesdk)
+
 
 ## 📜 License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
